@@ -13,9 +13,9 @@ const Starpage = () => {
                 <div className="position-absolute top-50 end-0 translate-middle-y">
                     <div className="container">
                         <img
-                            src={Peoplestarpage}
-                            width={683}
-                            height={653}
+                            src={Peoplestarpage} 
+                            className='gambar'
+                           
                         />
                     </div>
                 </div>
