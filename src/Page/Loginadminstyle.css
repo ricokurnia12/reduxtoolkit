@@ -1,0 +1,38 @@
+.form-group {
+    border-color: black;
+    border-radius: 10px;
+    background-color: #cb243e;
+    padding: 50px;
+    align-items: center;
+    align-content: center;
+    /* height: 800px; */
+    margin: auto;
+    /* width: 50%; */
+    /* width: 954px;
+    height: 647px; */
+}
+
+.Masukadmin {
+    text-align: center;
+    color: white;
+}
+
+.form-control {
+}
+
+input {
+    margin-bottom: 10px;
+}
+
+.btn {
+    background-color: #ffcc2a;
+    text-align: center;
+    align-items: center;
+}
+
+.fotogo {
+    align-items: center;
+    text-align: center;
+    margin-bottom: 20px;
+    margin-top: 1px;
+}
