@@ -67,9 +67,6 @@
 
 // -----------Function Expresion-------------//
 
-
-
-
 //--------------Arrow function--------------//
 
 // without arrow function
@@ -124,6 +121,5 @@
 //     this.umur = 23;
 //     console.log(this)
 // }
-
 
 // const rico = new Mahasiswa()
