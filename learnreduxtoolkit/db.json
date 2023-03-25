@@ -1,29 +1,24 @@
 {
   "products": [
     {
-      "id": 1,
-      "title": "Product 1",
-      "price": "899"
+      "title": "product 1",
+      "price": "999",
+      "id": 2
     },
     {
-      "id": 2,
-      "title": "Product 2",
-      "price": "932"
+      "title": "blabla",
+      "price": "123",
+      "id": 3
     },
     {
-      "id": 3,
-      "title": "Product 3",
-      "price": "492"
+      "title": "iphone 12 pro max",
+      "price": "1999",
+      "id": 4
     },
     {
-      "id": 4,
-      "title": "Product 4",
-      "price": "1092"
-    },
-    {
-      "id": 5,
-      "title": "Product 5",
-      "price": "952"
+      "title": "iphone 8s",
+      "price": "500",
+      "id": 5
     }
   ]
 }

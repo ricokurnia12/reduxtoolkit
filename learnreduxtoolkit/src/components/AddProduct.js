@@ -1,20 +1,24 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { update } from '../features/productSlice';
+import { saveProducts } from '../features/productSlice';
+import { useNavigate } from 'react-router-dom';
 
 const AddProduct = () => {
   const [title, setTitle] = useState('');
   const [price, setPrice] = useState('');
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-  const updateProduct = (e) => {
+  const createProduct = async (e) => {
     e.preventDefault();
-    dispatch(update({ title, price }));
+    await dispatch(saveProducts({ title, price }));
+    navigate('/');
   };
 
   return (
     <div className="card p-4">
-      <form onSubmit={updateProduct}>
+      <form onSubmit={createProduct}>
         <div className="mb-3">
           <label htmlFor="title" className="form-label">
             Title

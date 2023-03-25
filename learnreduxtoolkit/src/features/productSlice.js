@@ -15,20 +15,70 @@ export const getProducts = createAsyncThunk(
     return response.data;
   }
 );
+export const saveProducts = createAsyncThunk(
+  'products/saveProducts',
+  async ({ title, price }) => {
+    const response = await axios.post(
+      'http://localhost:5000/products',
+      {
+        title,
+        price,
+      }
+    );
+    console.log(response);
+    return response.data;
+  }
+);
+export const deleteProducts = createAsyncThunk(
+  'products/deleteProducts',
+  async (id) => {
+    await axios.delete(`http://localhost:5000/products/${id}`);
+    return id;
+  }
+);
+
+export const updateProducts = createAsyncThunk(
+  'products/updateProducts',
+  async ({ id, title, price }) => {
+    const response = await axios.patch(
+      `http://localhost:5000/products/${id}`,
+      {
+        title,
+        price,
+      }
+    );
+    console.log(response);
+    return response.data;
+  }
+);
 
 const productEntity = createEntityAdapter({
-  selectId: (product) => product.id
+  selectId: (product) => product.id,
 });
 
 const productSlice = createSlice({
   name: 'product',
   initialState: productEntity.getInitialState(),
   extraReducers: {
-    [getProducts.fulfilled]:(state,action)=>{
-      productEntity.setAll(state, action.payload)
-    }
-  }
+    [getProducts.fulfilled]: (state, action) => {
+      productEntity.setAll(state, action.payload);
+    },
+    [saveProducts.fulfilled]: (state, action) => {
+      productEntity.addOne(state, action.payload);
+    },
+    [deleteProducts.fulfilled]: (state, action) => {
+      productEntity.removeOne(state, action.payload);
+    },
+    [updateProducts.fulfilled]: (state, action) => {
+      productEntity.updateOne(state, {
+        id: action.payload.id,
+        updates: action.payload,
+      });
+    },
+  },
 });
 
-export const productSelectors = productEntity.getSelectors(state=> state.product)
+export const productSelectors = productEntity.getSelectors(
+  (state) => state.product
+);
 export default productSlice.reducer;

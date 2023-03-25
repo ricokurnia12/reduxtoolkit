@@ -1,20 +1,43 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { update } from '../features/productSlice';
-
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  getProducts,
+  productSelectors,
+  updateProducts,
+} from '../features/productSlice';
+import { useParams, useNavigate } from 'react-router-dom';
 const EditProduct = () => {
   const [title, setTitle] = useState('');
   const [price, setPrice] = useState('');
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { id } = useParams();
 
-  const updateProduct = (e) => {
+  const product = useSelector((state) =>
+    productSelectors.selectById(state, id)
+  );
+
+  useEffect(() => {
+    dispatch(getProducts());
+  }, [dispatch]);
+  useEffect(() => {
+    if (product) {
+      setTitle(product.title);
+      setPrice(product.price);
+    }
+  }, [product]);
+
+  const handleUpdate = async (e) => {
     e.preventDefault();
-    dispatch(update({ title, price }));
+    await dispatch(updateProducts({ id, title, price }));
+    await navigate('/');
+
+    alert('updated!');
   };
 
   return (
     <div className="card p-4">
-      <form onSubmit={updateProduct}>
+      <form onSubmit={handleUpdate}>
         <div className="mb-3">
           <label htmlFor="title" className="form-label">
             Title
